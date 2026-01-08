@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>毎日の作業を減らして、あなたが楽になる仕組み</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #ffffff;
+            color: #3A3A3A;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav a {
+            color: #3A3A3A;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #9333EA;
+        }
+
+        .header-cta {
+            background: #9333EA;
+            color: #ffffff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .header-cta:hover {
+            background: #7c3aed;
+        }
+
+        /* ファーストビュー */
+        .fv {
+            background: linear-gradient(135deg, #9333EA 0%, #A855F7 50%, #EC4899 100%);
+            background-image: url('hero-bg.jpg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 150px 20px 100px;
+            text-align: left;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fv::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.6) 0%, rgba(168, 85, 247, 0.6) 50%, rgba(236, 72, 153, 0.6) 100%);
+            z-index: 0;
+        }
+
+        .fv::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .fv-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .fv h1 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .fv .subcopy {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            line-height: 2;
+            max-width: 700px;
+        }
+
+        .fv .subcopy li {
+            list-style: none;
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .fv .subcopy li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #EC4899;
+            font-weight: 700;
+        }
+
+        .cta-button {
+            background: #ffffff;
+            color: #3A3A3A;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+
+        .cta-button::after {
+            content: " →";
+        }
+
+        /* セクション共通スタイル */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 18px;
+            color: #9333EA;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #3A3A3A;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* 利点セクション */
+        .benefits {
+            background: #ffffff;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .benefit-card {
+            background: #F3E8FF;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #3A3A3A;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card p {
+            font-size: 16px;
+            color: #666;
+            line-height: 2;
+        }
+
+        /* DX化セクション */
+        .dx-examples {
+            background: #F3E8FF;
+            padding: 100px 20px 40px;
+        }
+
+        .dx-examples-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .dx-examples .quote {
+            font-size: 28px;
+            color: #9333EA;
+            font-weight: 600;
+            margin-bottom: 60px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        .dx-examples-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .dx-example-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .dx-example-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #9333EA;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .dx-example-card .action {
+            font-size: 18px;
+            font-weight: 600;
+            color: #3A3A3A;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .dx-example-card .future {
+            font-size: 16px;
+            color: #666;
+            line-height: 2;
+            margin-top: 15px;
+        }
+
+        .dx-example-card .future strong {
+            color: #EC4899;
+            font-weight: 600;
+        }
+
+        /* DX化の悩み解決セクション */
+        .dx-worry {
+            background: #F3E8FF;
+            padding: 20px 20px 60px;
+        }
+
+        .dx-worry-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .dx-worry .worry-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: #9333EA;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            margin-top: 0;
+        }
+
+        .dx-worry-list {
+            background: #ffffff;
+            padding: 35px 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .dx-worry-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dx-worry-list li {
+            font-size: 16px;
+            color: #9333EA;
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            text-align: left;
+        }
+
+        .dx-worry-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .dx-worry-list li:before {
+            content: "×";
+            position: absolute;
+            left: 0;
+            color: #EC4899;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .dx-worry .solution {
+            font-size: 18px;
+            color: #9333EA;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .dx-worry .solution strong {
+            color: #9333EA;
+            font-weight: 700;
+        }
+
+        /* 実績セクション */
+        .results {
+            background: #ffffff;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .result-card {
+            background: #F3E8FF;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .result-card-image {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #9333EA 0%, #A855F7 100%);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .result-card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 20px 25px;
+            color: #ffffff;
+        }
+
+        .result-card-overlay h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .result-card-overlay .industry {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .result-card-overlay .service-tag {
+            font-size: 13px;
+            opacity: 0.9;
+            white-space: nowrap;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .result-card-overlay-header {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .result-card-overlay-header .title-section {
+            margin-top: auto;
+        }
+
+        .result-card-overlay-header .title-section h3 {
+            margin-bottom: 5px;
+            line-height: 1.3;
+        }
+
+        .result-card-overlay-header .title-section h3 .shop-name-small {
+            font-size: 0.78em;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .result-card-overlay-header .title-section h3 {
+            margin-bottom: 5px;
+        }
+
+        .result-card-overlay-header .title-section h3 .shop-name-small {
+            font-size: 0.82em;
+            font-weight: 600;
+        }
+
+        .result-card-content {
+            padding: 30px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .result-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .stat-box {
+            flex: 1;
+            min-width: 120px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            font-weight: 600;
+            color: #3A3A3A;
+            margin-bottom: 10px;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #9333EA;
+        }
+
+        .result-description {
+            font-size: 16px;
+            color: #3A3A3A;
+            line-height: 2;
+            flex-grow: 1;
+        }
+
+        .result-description ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .result-description ul li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .result-description ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #9333EA;
+            font-weight: 700;
+        }
+
+        /* 料金表セクション */
+        .pricing {
+            background: #F3E8FF;
+        }
+
+        .pricing .section-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .pricing-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #BE185D;
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            line-height: 1.4;
+        }
+
+        /* 自己紹介セクション */
+        .about {
+            background: #ffffff;
+        }
+
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .about-image {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: #F3E8FF;
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #9333EA;
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .about-image-placeholder {
+            color: #9333EA;
+            font-size: 14px;
+            text-align: center;
+            padding: 20px;
+            display: none;
+        }
+
+        .about-image img[src=""],
+        .about-image img:not([src]) {
+            display: none;
+        }
+
+        .about-image img[src=""] ~ .about-image-placeholder,
+        .about-image img:not([src]) ~ .about-image-placeholder {
+            display: flex;
+        }
+
+        .about-info h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #3A3A3A;
+            margin-bottom: 20px;
+        }
+
+        .about-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #F3E8FF;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: #9333EA;
+            font-weight: 500;
+        }
+
+        .about-badge img {
+            height: 18px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .about-skills {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .about-skills li {
+            font-size: 16px;
+            line-height: 2.2;
+            color: #3A3A3A;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .about-skills li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #9333EA;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .pricing-grid {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .pricing-card h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #3A3A3A;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .pricing-price {
+            font-size: 32px;
+            font-weight: 700;
+            color: #9333EA;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #F3E8FF;
+        }
+
+        .pricing-features {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pricing-features li {
+            font-size: 15px;
+            line-height: 2;
+            color: #3A3A3A;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #9333EA;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        /* 最終CTAセクション */
+        .final-cta {
+            background: linear-gradient(135deg, #6B21A8 0%, #9333EA 50%, #A855F7 100%);
+            padding: 100px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .final-cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .final-cta h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            line-height: 1.4;
+        }
+
+        .final-cta .message {
+            font-size: 18px;
+            line-height: 2.2;
+            margin-bottom: 50px;
+            opacity: 0.9;
+        }
+
+        .final-cta .cta-button {
+            background: #9333EA;
+            color: #ffffff;
+        }
+
+        .final-cta .cta-button:hover {
+            background: #7c3aed;
+        }
+
+        /* フッター */
+        .footer {
+            background: #F3E8FF;
+            padding: 30px 20px 25px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .footer-address {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #9333EA;
+            text-decoration: none;
+            font-size: 13px;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-links span {
+            color: #9333EA;
+        }
+
+        .footer-legal {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(147, 51, 234, 0.2);
+            text-align: left;
+        }
+
+        .footer-legal-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-legal h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: #3A3A3A;
+            margin-bottom: 10px;
+        }
+
+        .footer-legal-info {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .footer-legal-info p {
+            margin-bottom: 6px;
+        }
+
+        .footer-legal-info p:last-child {
+            margin-bottom: 0;
+        }
+
+        .footer-legal-line {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        .footer-legal-line:not(:last-child)::after {
+            content: " | ";
+            margin-left: 15px;
+            color: #9333EA;
+        }
+
+        .footer-legal-info a {
+            color: #9333EA;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .footer-legal-info a:hover {
+            opacity: 0.7;
+            text-decoration: underline;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 968px) {
+            .nav {
+                display: none;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .dx-examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .fv h1 {
+                font-size: 36px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .fv {
+                padding: 120px 20px 60px;
+                min-height: 80vh;
+            }
+
+            .fv h1 {
+                font-size: 28px;
+            }
+
+            .fv .subcopy {
+                font-size: 16px;
+            }
+
+            .section {
+                padding: 60px 15px;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .pricing-card {
+                padding: 30px 20px;
+            }
+
+            .pricing-price {
+                font-size: 28px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-image {
+                max-width: 280px;
+                margin: 0 auto;
+            }
+
+            .about-info {
+                text-align: center;
+            }
+
+            .about-info h3 {
+                font-size: 24px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .about-badge {
+                display: inline-flex;
+                justify-content: center;
+                margin: 0 auto 25px;
+            }
+
+            .about-skills {
+                margin-top: 20px;
+                text-align: left;
+            }
+
+            .about-skills li {
+                font-size: 14px;
+                line-height: 1.8;
+                margin-bottom: 12px;
+            }
+
+            .example-list {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .dx-worry {
+                padding: 30px 15px 50px;
+            }
+
+            .dx-worry-list {
+                padding: 30px 20px;
+            }
+
+            .dx-worry-list li {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            .dx-worry .solution {
+                font-size: 16px;
+            }
+
+            .dx-worry .worry-title {
+                font-size: 20px;
+            }
+
+            .footer {
+                padding: 25px 15px 20px;
+            }
+
+            .footer-copyright {
+                font-size: 12px;
+                margin-bottom: 6px;
+            }
+
+            .footer-address {
+                font-size: 11px;
+                margin-bottom: 12px;
+            }
+
+            .footer-links {
+                gap: 12px;
+                margin-bottom: 15px;
+            }
+
+            .footer-links a,
+            .footer-links span {
+                font-size: 12px;
+            }
+
+            .footer-legal {
+                margin-top: 15px;
+                padding-top: 15px;
+            }
+
+            .footer-legal-content {
+                padding: 0 10px;
+            }
+
+            .footer-legal h4 {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            .footer-legal-info {
+                font-size: 11px;
+                line-height: 1.5;
+            }
+
+            .footer-legal-info p {
+                margin-bottom: 5px;
+            }
+
+            .footer-legal-line {
+                display: block;
+                margin-right: 0;
+            }
+
+            .footer-legal-line::after {
+                content: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-content">
+            <a href="#top" class="logo">
+                <img src="logo.png.png" alt="AIコンサル">
+            </a>
+            <nav>
+                <ul class="nav">
+                    <li><a href="#services">サービス</a></li>
+                    <li><a href="#results">導入事例</a></li>
+                    <li><a href="#pricing">料金</a></li>
+                    <li><a href="#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <a href="https://line.me/R/ti/p/@115iutfm" target="_blank" class="header-cta" id="line-link-header">30分無料相談</a>
+        </div>
+    </header>
+
+    <!-- ファーストビュー -->
+    <section class="fv" id="top">
+        <div class="fv-content">
+            <h1>毎日の"面倒な作業"を減らして、<br>あなたが楽になる仕組みを作ります。</h1>
+            <ul class="subcopy">
+                <li>手入力・集計・返信を減らして作業時間をカット</li>
+                <li>LINEや予約対応を仕組み化</li>
+                <li>空いた時間を接客・売上・SNSに使える</li>
+            </ul>
+            <a href="#contact" class="cta-button">導入事例を見る</a>
+        </div>
+    </section>
+
+    <!-- 利点セクション -->
+    <section class="section benefits" id="services">
+        <div class="section-header">
+            <div class="section-label">利点</div>
+            <h2 class="section-title">導入が実現する 3つの変革</h2>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">▷▷</div>
+                <h3>業務効率300%向上</h3>
+                <p>自動化で、繰り返し作業を削減します。従業員はより創造的な業務に集中でき、生産性が飛躍的に向上します。</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">👥</div>
+                <h3>業務効率化による人材不足の解消</h3>
+                <p>繰り返し作業を自動化することで、限られた人員でも業務を回せるようになります。働き手不足の課題を、効率化で解決します。</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">$</div>
+                <h3>コスト削減と収益向上</h3>
+                <p>運用コストを最大40%削減しながら、新たな収益チャンスを生み出します。投資対効果の高い推進を実現します。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DX化セクション -->
+    <section class="dx-examples">
+        <div class="dx-examples-content">
+            <p class="quote">DX化ってなにをすればいいの？</p>
+            
+            <div class="dx-examples-grid">
+                <!-- 法律事務所 -->
+                <div class="dx-example-card">
+                    <h3>例1 法律事務所</h3>
+                    <p class="action">書類をスマホで送るだけ</p>
+                    <p class="future">→ <strong>自動で分類・整理される</strong>未来が手に入ります。ファイリングの手間がなくなり、探す時間も短縮。</p>
+                </div>
+
+                <!-- 製造業 -->
+                <div class="dx-example-card">
+                    <h3>例2 製造業</h3>
+                    <p class="action">作業内容をスマホで音声入力するだけ</p>
+                    <p class="future">→ <strong>生産日報が自動で作成され、データも集計される</strong>未来が手に入ります。毎日の手入力作業がなくなり、現場は製造に集中できます。</p>
+                </div>
+
+                <!-- 飲食店 -->
+                <div class="dx-example-card">
+                    <h3>例3 飲食店</h3>
+                    <p class="action">メニューや店内の写真を送るだけ</p>
+                    <p class="future">→ <strong>SNS投稿が自動で作成され、投稿タイミングも最適化される</strong>未来が手に入ります。SNS運用の手間が減り、集客に集中できます。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DX化の悩み解決セクション -->
+    <section class="dx-worry">
+        <div class="dx-worry-content">
+            <p class="worry-title">でも、DX化って大変そう...<br>そう思っていませんか？</p>
+            
+            <div class="dx-worry-list">
+                <ul>
+                    <li>システム総入れ替えでお金がかかりそう</li>
+                    <li>従業員が使えるか心配</li>
+                    <li>どこから始めればいいかわからない</li>
+                </ul>
+            </div>
+
+            <p class="solution">
+                <strong>AIなら、今ある業務をそのまま使えます。</strong><br>
+                システムを全部変える必要はありません。<br>
+                まず1つだけ、簡単なことから始めれば大丈夫。<br>
+                LINEやスマホでできることから、一緒に始めましょう。
+            </p>
+        </div>
+    </section>
+
+    <!-- 実績セクション -->
+    <section class="section results" id="results">
+        <div class="section-header">
+            <div class="section-label">ケーススタディ</div>
+            <h2 class="section-title">実際の導入事例</h2>
+        </div>
+        <div class="results-grid">
+            <!-- 実例①：ラーメン屋さんの勤怠管理 -->
+            <div class="result-card">
+                <div class="result-card-image">
+                    <div class="result-card-overlay">
+                        <div class="result-card-overlay-header">
+                            <div class="service-tag">勤怠管理</div>
+                            <div class="title-section">
+                                <h3><span class="shop-name-small">麺処</span> 神凪</h3>
+                                <div class="industry">飲食業</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-card-content">
+                    <div class="result-stats">
+                        <div class="stat-box">
+                            <div class="stat-label">導入前</div>
+                            <div class="stat-number" style="font-size: 18px; line-height: 1.5;">年約450時間の作業時間</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">導入後</div>
+                            <div class="stat-number" style="font-size: 18px; line-height: 1.5;">年約90分で作業完了</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">業務削減率</div>
+                            <div class="stat-number" style="color: #EC4899; font-size: 18px; line-height: 1.5;">年間80％業務効率化</div>
+                        </div>
+                    </div>
+                    <div class="result-description">
+                        <p>勤怠管理の手作業を自動化し、作業時間を大幅に削減。スタッフの労務管理にかかる時間を約80%削減しました。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 実例②：接骨院のLINE予約 -->
+            <div class="result-card">
+                <div class="result-card-image" style="background: linear-gradient(135deg, #EC4899 0%, #F472B6 100%);">
+                    <div class="result-card-overlay">
+                        <div class="result-card-overlay-header">
+                            <div class="service-tag">LINE予約システム</div>
+                            <div class="title-section">
+                                <h3>ひかり接骨院</h3>
+                                <div class="industry">医療・介護</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-card-content">
+                    <div class="result-stats">
+                        <div class="stat-box">
+                            <div class="stat-label">導入前</div>
+                            <div class="stat-number" style="font-size: 18px; line-height: 1.5;">施術中でも電話対応</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">導入後</div>
+                            <div class="stat-number" style="font-size: 18px; line-height: 1.5;">診察時間外でも自動で予約管理</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">業務削減率</div>
+                            <div class="stat-number" style="color: #EC4899; font-size: 18px; line-height: 1.5;">50％以上業務効率化</div>
+                        </div>
+                    </div>
+                    <div class="result-description">
+                        <p>予約対応の手間を削減／取りこぼし防止を実現</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 実例③：LP制作 -->
+            <div class="result-card">
+                <div class="result-card-image" style="background: linear-gradient(135deg, #A855F7 0%, #9333EA 100%);">
+                    <div class="result-card-overlay">
+                        <div class="result-card-overlay-header">
+                            <div class="service-tag">LP作成</div>
+                            <div class="title-section">
+                                <h3>ほぐし処 HoguseeS</h3>
+                                <div class="industry">サービス業</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="result-card-content">
+                    <div class="result-stats">
+                        <div class="stat-box">
+                            <div class="stat-label">導入前</div>
+                            <div class="stat-number" style="font-size: 18px; line-height: 1.5;">大手予約サイト利用料年間約60万円</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">導入後</div>
+                            <div class="stat-number" style="font-size: 18px; line-height: 1.5;">自社LP導入で年間30万円削減</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">業務削減率</div>
+                            <div class="stat-number" style="color: #EC4899; font-size: 18px; line-height: 1.5;">50％以上経費削減</div>
+                        </div>
+                    </div>
+                    <div class="result-description">
+                        <p>サービス内容と相談導線を整理し、「何をしているお店か」が一目で伝わる構成にしました。</p>
+                        <p style="margin-top: 20px;">
+                            <a href="https://hogusees.github.io/momihogusi/" target="_blank" style="display: inline-block; color: #9333EA; font-weight: 500; text-decoration: none; border-bottom: 1px solid #9333EA; transition: color 0.3s, border-color 0.3s;">→導入例</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 料金表セクション -->
+    <section class="section pricing" id="pricing">
+        <div class="section-header">
+            <div class="section-label">料金表</div>
+            <h2 class="section-title">
+                プラン・サービス料金
+                <span class="pricing-badge">お得/2027年3月末まで</span>
+            </h2>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>単発プラン</h3>
+                <div class="pricing-price">30,000円～</div>
+                <ul class="pricing-features">
+                    <li>初回ヒアリング無料</li>
+                    <li>GAS・GPTs・Gem提供</li>
+                    <li>改善サポート(1回無料)</li>
+                    <li>※修正10,000円/回</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>標準プラン</h3>
+                <div class="pricing-price">15,000円～/月</div>
+                <ul class="pricing-features">
+                    <li>初回ヒアリング無料</li>
+                    <li>GAS・GPTs・Gem提供</li>
+                    <li>月次改善レポート</li>
+                    <li>AIメンテナンス無料</li>
+                    <li>※最低期間6カ月～</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>LP作成</h3>
+                <div class="pricing-price">30,000円～</div>
+                <ul class="pricing-features">
+                    <li>1枚30,000円</li>
+                    <li>ページ追加1枚20,000円～</li>
+                    <li>ドメイン料別途/月</li>
+                    <li>※SEO,AEO対策別途</li>
+                    <li>＊修正8,000円</li>
+                </ul>
+            </div>
+            <div class="pricing-card">
+                <h3>SNS運用代行(Instagram)</h3>
+                <div class="pricing-price">30,000円/月</div>
+                <ul class="pricing-features">
+                    <li>～3か月無料</li>
+                    <li>月次改善レポート</li>
+                    <li>※最低期間6カ月</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 自己紹介セクション -->
+    <section class="section about" id="about">
+        <div class="section-header">
+            <div class="section-label">自己紹介</div>
+            <h2 class="section-title">プロフィール</h2>
+        </div>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="profile.jpg.png" alt="中原千佳代">
+                <div class="about-image-placeholder">画像をここに配置</div>
+            </div>
+            <div class="about-info">
+                <h3>中原千佳代</h3>
+                <div class="about-badge">
+                    <span>生成AIパスポート取得</span>
+                    <img src="ai-passport-logo.png.png" alt="生成AIパスポート">
+                </div>
+                <ul class="about-skills">
+                    <li>AI業務自動化（GPTs、Gem、GAS）</li>
+                    <li>AI研修コンサル：AIリテラシー教育／社内プロンプト設計指導</li>
+                    <li>LP作成</li>
+                    <li>webライター(YouTube台本、SEO記事)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最終CTAセクション -->
+    <section class="final-cta" id="contact">
+        <div class="final-cta-content">
+            <h2>まずは、知ることから始めませんか？</h2>
+            <p class="message">
+                導入するかどうかを決める必要はありません。<br>
+                まずは、どの作業がどれくらい減るかを知るだけで大丈夫です。
+            </p>
+            <a href="https://line.me/R/ti/p/@115iutfm" target="_blank" class="cta-button" id="line-link-cta">30分無料相談はこちら</a>
+        </div>
+    </section>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-copyright">© 2027 AIコンサルタント中原千佳代</p>
+            <p class="footer-address">〒470-2347 愛知県知多郡武豊町道崎12‐3</p>
+            <ul class="footer-links">
+                <li><a href="privacy.html">プライバシーポリシー</a></li>
+                <li><span>｜</span></li>
+                <li><a href="#about">運営者情報</a></li>
+                <li><span>｜</span></li>
+                <li><a href="https://line.me/R/ti/p/@115iutfm" target="_blank" id="footer-line-link">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // スマホかどうかを判定
+        function isMobile() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
+
+        // LINEリンクを設定（スマホの場合はline://スキームを使用）
+        function setLineLinks() {
+            const lineId = '@115iutfm';
+            const lineUrl = isMobile() 
+                ? `line://ti/p/${lineId}` 
+                : `https://line.me/R/ti/p/${lineId}`;
+            
+            // ヘッダーのリンク
+            const headerLink = document.getElementById('line-link-header');
+            if (headerLink) {
+                headerLink.href = lineUrl;
+            }
+            
+            // CTAセクションのリンク
+            const ctaLink = document.getElementById('line-link-cta');
+            if (ctaLink) {
+                ctaLink.href = lineUrl;
+            }
+            
+            // フッターのリンク
+            const footerLink = document.getElementById('footer-line-link');
+            if (footerLink) {
+                footerLink.href = lineUrl;
+            }
+        }
+
+        // ページ読み込み時に実行
+        document.addEventListener('DOMContentLoaded', setLineLinks);
+    </script>
+</body>
+</html>
