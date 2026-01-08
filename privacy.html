@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プライバシーポリシー | AIコンサルタント中原千佳代</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #ffffff;
+            color: #3A3A3A;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* ヘッダー */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav a {
+            color: #3A3A3A;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #9333EA;
+        }
+
+        .header-cta {
+            background: #9333EA;
+            color: #ffffff;
+            padding: 10px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+
+        .header-cta:hover {
+            background: #7c3aed;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 120px 20px 60px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: #3A3A3A;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .privacy-section {
+            margin-bottom: 40px;
+        }
+
+        .privacy-section h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #9333EA;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #F3E8FF;
+        }
+
+        .privacy-section h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #3A3A3A;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .privacy-section p {
+            font-size: 16px;
+            color: #666;
+            line-height: 2;
+            margin-bottom: 15px;
+        }
+
+        .privacy-section ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+
+        .privacy-section li {
+            font-size: 16px;
+            color: #666;
+            line-height: 2;
+            margin-bottom: 10px;
+        }
+
+        .privacy-section strong {
+            color: #3A3A3A;
+            font-weight: 600;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: #9333EA;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+        }
+
+        .back-link:hover {
+            opacity: 0.7;
+        }
+
+        .back-link::before {
+            content: "← ";
+        }
+
+        /* フッター */
+        .footer {
+            background: #F3E8FF;
+            padding: 30px 20px 25px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-copyright {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .footer-address {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #9333EA;
+            text-decoration: none;
+            font-size: 13px;
+            transition: opacity 0.3s;
+        }
+
+        .footer-links a:hover {
+            opacity: 0.7;
+        }
+
+        .footer-links span {
+            color: #9333EA;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .nav {
+                display: none;
+            }
+
+            .main-content {
+                padding: 100px 15px 40px;
+            }
+
+            .page-title {
+                font-size: 28px;
+                margin-bottom: 30px;
+            }
+
+            .privacy-section h2 {
+                font-size: 20px;
+            }
+
+            .privacy-section h3 {
+                font-size: 18px;
+            }
+
+            .privacy-section p,
+            .privacy-section li {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="header">
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <img src="logo.png.png" alt="AIコンサル">
+            </a>
+            <nav>
+                <ul class="nav">
+                    <li><a href="index.html#services">サービス</a></li>
+                    <li><a href="index.html#results">導入事例</a></li>
+                    <li><a href="index.html#pricing">料金</a></li>
+                    <li><a href="index.html#contact">お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <a href="https://line.me/R/ti/p/@115iutfm" target="_blank" class="header-cta" id="line-link-header">30分無料相談</a>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+        <h1 class="page-title">プライバシーポリシー</h1>
+        
+        <div class="privacy-section">
+            <p>AIコンサルタント中原千佳代（以下「当方」）は、お客様の個人情報の保護を重要視し、個人情報の保護に関する法律（個人情報保護法）その他の関連法令を遵守し、適切に取り扱うものとします。</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>1. 個人情報の取得について</h2>
+            <p>当方は、以下の方法で個人情報を取得することがあります。</p>
+            <ul>
+                <li>公式LINEアカウントを通じたお問い合わせ</li>
+                <li>サービス提供に伴うヒアリング</li>
+                <li>メールや電話でのお問い合わせ</li>
+            </ul>
+            <p>取得する個人情報の種類は、以下のとおりです。</p>
+            <ul>
+                <li>お名前</li>
+                <li>メールアドレス</li>
+                <li>電話番号</li>
+                <li>会社名・組織名</li>
+                <li>その他、サービス提供に必要な情報</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>2. 個人情報の利用目的</h2>
+            <p>当方が取得した個人情報は、以下の目的で利用いたします。</p>
+            <ul>
+                <li>お問い合わせへの対応</li>
+                <li>サービス提供の実施</li>
+                <li>サービスに関するご案内やお知らせの送付</li>
+                <li>サービス改善のための分析</li>
+                <li>契約の履行および管理</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>3. 個人情報の管理</h2>
+            <p>当方は、個人情報を適切に管理し、漏洩、滅失、毀損の防止および是正のための措置を講じます。また、個人情報への不正アクセス、紛失、破壊、改ざん、漏洩等を防止するため、必要かつ適切な安全管理措置を実施します。</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>4. 個人情報の第三者提供</h2>
+            <p>当方は、以下の場合を除き、お客様の同意なく個人情報を第三者に提供することはありません。</p>
+            <ul>
+                <li>法令に基づく場合</li>
+                <li>人の生命、身体または財産の保護のために必要がある場合</li>
+                <li>公衆衛生の向上または児童の健全な育成の推進のために特に必要がある場合</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>5. 個人情報の開示・訂正・削除</h2>
+            <p>お客様は、当方が保有する個人情報について、開示、訂正、削除を求めることができます。これらの請求を行う場合は、下記のお問い合わせ先までご連絡ください。</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>6. Cookie（クッキー）について</h2>
+            <p>当方のウェブサイトでは、サービス向上のため、Cookieを使用する場合があります。Cookieは、お客様のブラウザに保存される小さなテキストファイルです。お客様は、ブラウザの設定によりCookieの受け取りを拒否することができます。</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>7. お問い合わせ先</h2>
+            <p>個人情報に関するお問い合わせは、以下までご連絡ください。</p>
+            <p>
+                <strong>事業者名：</strong>AIコンサルタント中原千佳代<br>
+                <strong>所在地：</strong>〒470-2347 愛知県知多郡武豊町道崎12‐3<br>
+                <strong>お問い合わせ：</strong><a href="https://line.me/R/ti/p/@115iutfm" target="_blank" id="privacy-line-link" style="color: #9333EA; text-decoration: none;">公式LINE</a>
+            </p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>8. プライバシーポリシーの変更</h2>
+            <p>当方は、必要に応じて本プライバシーポリシーを変更することがあります。変更後のプライバシーポリシーは、当方のウェブサイトに掲載した時点で効力を生じるものとします。</p>
+        </div>
+
+        <div class="privacy-section">
+            <p style="text-align: right; color: #666; font-size: 14px; margin-top: 40px;">
+                制定日：2027年1月1日<br>
+                最終改定日：2027年1月1日
+            </p>
+        </div>
+
+        <a href="index.html" class="back-link">トップページに戻る</a>
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="footer-copyright">© 2027 AIコンサルタント中原千佳代</p>
+            <p class="footer-address">〒470-2347 愛知県知多郡武豊町道崎12‐3</p>
+            <ul class="footer-links">
+                <li><a href="privacy.html">プライバシーポリシー</a></li>
+                <li><span>｜</span></li>
+                <li><a href="index.html#about">運営者情報</a></li>
+                <li><span>｜</span></li>
+                <li><a href="https://line.me/R/ti/p/@115iutfm" target="_blank" id="footer-line-link">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // スマホかどうかを判定
+        function isMobile() {
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        }
+
+        // LINEリンクを設定（スマホの場合はline://スキームを使用）
+        function setLineLinks() {
+            const lineId = '@115iutfm';
+            const lineUrl = isMobile() 
+                ? `line://ti/p/${lineId}` 
+                : `https://line.me/R/ti/p/${lineId}`;
+            
+            // ヘッダーのリンク
+            const headerLink = document.getElementById('line-link-header');
+            if (headerLink) {
+                headerLink.href = lineUrl;
+            }
+            
+            // フッターのリンク
+            const footerLink = document.getElementById('footer-line-link');
+            if (footerLink) {
+                footerLink.href = lineUrl;
+            }
+            
+            // プライバシーポリシー内のリンク
+            const privacyLink = document.getElementById('privacy-line-link');
+            if (privacyLink) {
+                privacyLink.href = lineUrl;
+            }
+        }
+
+        // ページ読み込み時に実行
+        document.addEventListener('DOMContentLoaded', setLineLinks);
+    </script>
+</body>
+</html>
+
